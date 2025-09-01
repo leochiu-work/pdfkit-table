@@ -115,7 +115,7 @@ class PDFDocumentWithTables extends PDFDocument {
         //const prepareCell      = options.prepareCell || ((cell, indexColumn, indexRow, indexCell, rectCell) => this.fillColor('black').font("Helvetica").fontSize(8).fill());
         
           let tableWidth       = 0;
-        const maxY             = this.page.height - (this.page.margins.bottom); // this.page.margins.top + 
+        const maxY             = this.page.height - (options.marginBottom); // this.page.margins.top + 
     
           let startX           = options.x || this.x || this.page.margins.left;
           let startY           = options.y || this.y || this.page.margins.top;
@@ -657,7 +657,7 @@ class PDFDocumentWithTables extends PDFDocument {
           // For safety, consider 3 rows margin instead of just one
           // if (startY + 2 * rowHeight < maxY) startY = rowBottomY + columnSpacing + rowDistance; // 0.5 is spacing rows
           // else this.emitter.emit('addPage'); //this.addPage();
-          if(options.useSafelyMarginBottom && this.y + safelyMarginBottom + rowHeight >= maxY && !lockAddPage) onFirePageAdded(); // this.emitter.emit('addPage'); //this.addPage();    
+          if(options.useSafelyMarginBottom && this.y + options.marginBottom + rowHeight >= maxY && !lockAddPage) onFirePageAdded(); // this.emitter.emit('addPage'); //this.addPage();
 
           // calc position
           startY = rowBottomY + columnSpacing + rowDistance; // 0.5 is spacing rows
@@ -807,7 +807,7 @@ class PDFDocumentWithTables extends PDFDocument {
           // For safety, consider 3 rows margin instead of just one
           // if (startY + 3 * rowHeight < maxY) startY = rowBottomY + columnSpacing + rowDistance; // 0.5 is spacing rows
           // else this.emitter.emit('addPage'); //this.addPage(); 
-          if(options.useSafelyMarginBottom && this.y + safelyMarginBottom + rowHeight >= maxY && !lockAddPage) onFirePageAdded(); // this.emitter.emit('addPage'); //this.addPage(); 
+          if(options.useSafelyMarginBottom && this.y + options.marginBottom + rowHeight >= maxY && !lockAddPage) onFirePageAdded(); // this.emitter.emit('addPage'); //this.addPage(); 
           
           // calc position
           startY = rowBottomY + columnSpacing + rowDistance; // 0.5 is spacing rows
